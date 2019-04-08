@@ -1,0 +1,10 @@
+{
+    "require": {
+        "phpunit/phpunit": "^8.1"
+    },
+    "autoload": {
+        "files": [
+            "src/functions.php"
+        ]
+    }
+}
