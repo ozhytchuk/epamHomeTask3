@@ -1,5 +1,5 @@
 <?php
-
+// @codeCoverageIgnoreStart
 $books = [
     [
         'name' => 'Learning php, mysql & JavaScript',
@@ -37,3 +37,4 @@ $books = [
         'price' => 8.18
     ]
 ];
+// @codeCoverageIgnoreEnd
