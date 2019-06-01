@@ -12,7 +12,7 @@ function repeatElements($array)
 
     foreach ($array as $value) {
         for ($i = 0; $i < $value; $i ++) {
-            array_push($newArray, $value);
+            $newArray[] = $value;
         }
     }
 
@@ -28,39 +28,39 @@ function repeatElements($array)
 */
 function findValues($array)
 {
-    sort($array);
     $newArr = [];
-    $findValues = [];
+    $uniqueArr = [];
+
+    sort($array);
 
     for ($i = 0; $i < count($array); $i++) {
         if ($array[$i] == $array[$i+1]) {
             continue;
         }
-        array_push($newArr, $array[$i]);
+        $uniqueArr[] = $array[$i];
     }
 
-    $smallest = $newArr[0];
-    $biggest = $newArr[(count($newArr)-1)];
+    $count = count($uniqueArr);
 
-    for ($i = 0; $i < count($newArr); $i++) {
-        if (($newArr[$i] >= $smallest) && $i <= 2) {
-            array_push($findValues, $newArr[$i]);
-        }
-    }
+    $newArr['min'] = [
+        $uniqueArr[0],
+        $uniqueArr[1],
+        $uniqueArr[2],
+    ];
 
-    for ($i = 0; $i < count($newArr); $i++) {
-        if ($i == ((count($newArr) - 1) / 2) ) {
-            array_push($findValues, $newArr[$i-1], $newArr[$i], $newArr[$i+1]);
-        }
-    }
+    $newArr['average'] = [
+        $uniqueArr[$count / 2 - 1],
+        $uniqueArr[$count / 2],
+        $uniqueArr[$count / 2 + 1],
+    ];
 
-    for ($i = 0; $i < count($newArr); $i++) {
-        if (($newArr[$i] <= $biggest) && $i >= (count($newArr) - 3)) {
-            array_push($findValues, $newArr[$i]);
-        }
-    }
+    $newArr['max'] = [
+        $uniqueArr[$count - 3],
+        $uniqueArr[$count - 2],
+        $uniqueArr[$count - 1],
+    ];
 
-    return $findValues;
+    return $newArr;
 }
 
 /*
@@ -79,7 +79,7 @@ function sortBooks($books)
 
     foreach ($books as $item) {
         if (array_key_exists("tags", $item) && in_array("php", $item["tags"])) {
-            array_push($booksPHP, $item);
+            $booksPHP[] = $item;
         }
     }
 
